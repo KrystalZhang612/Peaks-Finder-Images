@@ -12,8 +12,6 @@ import cv2
 import math
 
 
-
-
 #we here have alternative ways to implement SobelImage and BilinearInterpolation
 
 #as two supplemental functions to implement FindPeaksImage function 
@@ -133,9 +131,7 @@ def SobelImage(image):
 				#followed by the limits of gradient magnitude
 				
 	Magnitude = Magnitude * 255 / Magnitude.max()
-	
-	
-	
+
 	
 	for i in range(0, Height):
 		
@@ -190,29 +186,23 @@ def BilinearInterpolation(image, x, y):
 	
 	Temp1 = (1 - a) * (1 - b) * image[m, n]
 	
-	
 	if m1 < image.shape[0]:
 		
-		Temp2 = a * (1 - b) * image[m1, n]
-		
+		Temp2 = a * (1 - b) * image[m1, n]	
 	else:
-		
 		Temp2 = 0 * image[0, 0]
-		
-		
+			
 	if n1 < image.shape[1]:
 		
 		Temp3 = (1 - a) * b * image[m, n1]
 		
 	else:
-		
 		Temp3 = 0 * image[0, 0]
 		
 		
 	if m1 < image.shape[0] and n1 < image.shape[1]:
 		
-		Temp4 = a * b * image[m1,n1]
-		
+		Temp4 = a * b * image[m1,n1]	
 	else:
 		
 		Temp4 = 0 * image[0, 0]
@@ -220,15 +210,9 @@ def BilinearInterpolation(image, x, y):
 	return Temp1 + Temp2 + Temp3 + Temp4
 
 
-
-
-
 #the implementation of the FindPeaksImage function
 
-
-
 def FindPeaksImage(image, thres):
-	
 	
 	image1 = Image.open(image)
 	
@@ -299,21 +283,10 @@ def FindPeaksImage(image, thres):
 					
 	cv2.imwrite('7.png', ResultImage)
 
-	
-	
-	
-	
+		
 #Driver/Testing codes:
-	
-#Required Test:
 	
 #Find the peak responses in ”Circle.png” with thres = 40.0 and save as ”7.png”
 	
 
-a = FindPeaksImage("hw1_data/Circle.png",40.0)
-
-
-
-
-
-	
+a = FindPeaksImage("Circle.png",40.0)
